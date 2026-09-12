@@ -133,6 +133,7 @@ This allows the VM to be restored to this working state if future exercises brea
 
 ![Internet connectivity and DNS resolution tests](./4-screenshot-verification-tests.png)
 
+![IP address and gateway connectivity test](./2-screenshot-ip-gateway-test.png)
 ---
 
 # 🐞 Problems Encountered & Solutions
