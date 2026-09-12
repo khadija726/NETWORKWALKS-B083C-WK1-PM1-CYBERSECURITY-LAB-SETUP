@@ -110,7 +110,6 @@ sudo nmcli connection down "Wired connection 1"
 sudo nmcli connection up "Wired connection 1"
 ```
 
-![Kali static IP configuration via nmcli](./3-screenshot-kali-static-ip-config.png)
 
 ## Step 4. Take a Clean Snapshot
 
