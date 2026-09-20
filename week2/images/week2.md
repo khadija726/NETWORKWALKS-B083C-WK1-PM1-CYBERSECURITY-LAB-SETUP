@@ -64,8 +64,6 @@ Emails from the first run included `info@`, `contactspocaccess@`, `viva-noreply@
 - Results varied between two identical runs. A likely reason is that the source limits or blocks repeated automated requests, but I did not verify the cause.
 - The raw output is noisy (placeholders, extraction errors), so an analyst must clean and verify results.
 
-![Task 1, first run](week2/images/task1_baidu_run1.png)
-![Task 1, second run](week2/images/task1_baidu_run2.png)
 
 #### Task 2: All sources, limit 50
 ```bash
@@ -84,9 +82,7 @@ theHarvester -d microsoft.com -l 50 -b all 2>&1 | tee task2_all.txt
 - Hundreds of `fabric.microsoft.com` subdomains show how one cloud product can create many hostnames to inventory.
 - Some entries such as `2Fblogs.microsoft.com` are extraction errors (`%2F` is an encoded `/`).
 
-![Task 2, start of run](week2/images/task2_all_start.png)
-![Task 2, emails and hosts](week2/images/task2_all_emails_hosts.png)
-![Task 2, end of run](week2/images/task2_all_end.png)
+
 
 **What an attacker learns:** emails for phishing, hostnames for finding forgotten or weaker services, and naming conventions that reveal how the infrastructure is organized.
 
@@ -106,7 +102,6 @@ ip a
 - Kali MAC: `08:00:27:5a:87:bc` (VirtualBox prefix `08:00:27`)
 - Subnet: `10.0.0.0/24` (mask `255.255.255.0`)
 
-![ip a output](week2/images/ip_a_kali.png)
 
 #### 4.2.2 Discover live hosts
 Zenmap: Target `10.0.0.0/24`, Profile **Ping scan**, command `nmap -sn 10.0.0.0/24`.
@@ -133,7 +128,7 @@ Nmap done: 256 IP addresses (3 hosts up) scanned in 2.94 seconds
 **Observations:**
 - **3 live hosts**, including my own VM.
 - `10.0.0.1` and `10.0.0.3` share the same MAC. Here this is consistent with both being served by VirtualBox's virtual network engine. On a real network, two IPs sharing one MAC can indicate ARP spoofing or a multi-homed device, so the cause must be checked before drawing conclusions.
-
+- 
 ![Zenmap ping scan](week2/images/zenmap_ping_scan.png)
 
 #### 4.2.3 Topology (Task 7)
@@ -160,7 +155,6 @@ I therefore ran the scan from inside the lab (Kali). Isolation of a test lab fro
 > **[TO COMPLETE — keep this section only if you run the capture, otherwise delete it]**
 > In one Kali terminal run `sudo tcpdump -i eth0 -n arp or icmp | tee capture_scan.txt`, then run `nmap -sn 10.0.0.0/24` in another terminal and stop the capture with Ctrl+C. Describe what you actually see (for example a burst of ARP "who-has" requests to consecutive addresses) and add the screenshot below.
 
-![tcpdump during scan](week2/images/tcpdump_scan.png)
 
 ---
 
