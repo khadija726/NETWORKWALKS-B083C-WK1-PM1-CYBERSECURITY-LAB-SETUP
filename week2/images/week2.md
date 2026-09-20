@@ -60,6 +60,8 @@ theHarvester -d microsoft.com -l 1000 -b baidu | tee task1_baidu.txt
 
 Emails from the first run included `info@`, `contactspocaccess@`, `viva-noreply@` and some placeholder or malformed entries (`abc@`, `someone@`, `user@contoso.onmicrosoft.com`, and entries starting with a comma such as `,contact@`). Hosts included `account`, `appsource`, `developer`, `docs`, `graph`, `learn`, `msdn` and `msrc` under `microsoft.com`.
 
+![Task 1, first run](task1_baidu_run1.png)
+
 **Observations:**
 - Results varied between two identical runs. A likely reason is that the source limits or blocks repeated automated requests, but I did not verify the cause.
 - The raw output is noisy (placeholders, extraction errors), so an analyst must clean and verify results.
@@ -74,6 +76,8 @@ theHarvester -d microsoft.com -l 50 -b all 2>&1 | tee task2_all.txt
 - **1364 hosts**, some with resolved IPs (format `host:IP`).
 - Many sources returned `Missing API key` errors (for example bevigil, bitbucket, builtwith, brave, securityscorecard). This is expected because those sources need keys; the free sources still returned results.
 - The Hudson Rock source reported 43 hosts and, according to that third-party source, about 602,741 compromised credentials linked to the domain, including about 16,148 employees. I did not verify these figures.
+
+  ![Task 1, second run](task1_baidu_run2.png)
 
 **Observations:**
 - Using all sources returned far more results (1364 hosts) than Baidu alone (18). Different sources return different data, so several should always be used.
@@ -129,7 +133,8 @@ Nmap done: 256 IP addresses (3 hosts up) scanned in 2.94 seconds
 - **3 live hosts**, including my own VM.
 - `10.0.0.1` and `10.0.0.3` share the same MAC. Here this is consistent with both being served by VirtualBox's virtual network engine. On a real network, two IPs sharing one MAC can indicate ARP spoofing or a multi-homed device, so the cause must be checked before drawing conclusions.
 - 
-![Zenmap ping scan](week2/images/zenmap_ping_scan.png)
+
+![Zenmap ping scan](zenmap_ping_scan.png)
 
 #### 4.2.3 Topology (Task 7)
 In Zenmap: Topology tab, Legend on, Save Graphic as PDF (`zenmap_topology.pdf`).
@@ -139,7 +144,8 @@ In Zenmap: Topology tab, Legend on, Save Graphic as PDF (`zenmap_topology.pdf`).
 - Green means "fewer than 3 open ports", but no port scan was performed, so the colour carries no security meaning here.
 - `10.0.0.2` is the Kali VM itself (also shown as `localhost`).
 
-![Topology with legend](week2/images/zenmap_topology.png)
+
+![Topology with legend](zenmap_topology.png)
 
 The exported file is `week2/zenmap_topology.pdf`.
 
